@@ -1,0 +1,11 @@
+<h1>Game control component</h1>
+
+<button class="btn btn-success" type="button" name="button" (click)="startCounter()">Start</button>
+<button class="btn btn-warning" type="button" name="button">Stop</button>
+
+<ul *ngFor="let count of counterAsArray()">
+  <app-even
+    [count]=count
+  >
+  </app-even>
+</ul>
