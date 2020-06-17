@@ -5,16 +5,24 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './game-control.component.html',
 })
 export class GameControlComponent implements OnInit {
-  public counter: number;
+  public counter: number[];
 
-  private interval: NodeJS.Timeout;
+  private interval: any;
 
   ngOnInit(): void {
-    this.counter = 0;
+    this.counter = [];
   }
 
   public startCounter(): void {
     this.interval = setInterval(this.assignCounter.bind(this), 1000);
+  }
+
+  public evenCounter(): number[] {
+    return this.counter.filter(num => (num % 2) === 0);
+  }
+
+  public oddCounter(): number[] {
+    return this.counter.filter(num => (num % 2) !== 0);
   }
 
   public stopCounter(): void {
@@ -22,10 +30,7 @@ export class GameControlComponent implements OnInit {
   }
 
   private assignCounter(): void {
-    this.counter += 1;
-  }
-
-  public counterAsArray(): Array<number> {
-    return Array(this.counter).fill(0).map((_x,i) => i);
+    const count = this.counter.length;
+    this.counter.push(count + 1);
   }
 }
