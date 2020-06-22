@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+
+// Models
 import { Recipe } from '../recipe.model';
 
 @Component({
@@ -6,5 +8,5 @@ import { Recipe } from '../recipe.model';
   templateUrl: './recipe-detail.component.html',
 })
 export class RecipeDetailComponent {
-  @Input() public recipe: Recipe;
+  @Input() recipeSelected: Recipe;
 }

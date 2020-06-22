@@ -1,27 +1,25 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+// Models
 import { Recipe } from '../recipe.model';
+
+// Services
+import { RecipeService } from '../../recipe.service';
 
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
 })
-export class RecipeListComponent {
-  @Output() recipeSelected = new EventEmitter<Recipe>();
+export class RecipeListComponent implements OnInit {
+  public recipes: Recipe[];
 
-  recipes: Recipe[] = [
-    new Recipe(
-      "A test recipe",
-      "This is simply a test",
-      "https://www.inspiredtaste.net/wp-content/uploads/2018/12/Sauteed-Zucchini-Recipe-1-1200.jpg"
-    ),
-    new Recipe(
-      "Another test recipe",
-      "This is simply a test, mark two",
-      "https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/chorizo-mozarella-gnocchi-bake-cropped.jpg"
-    )
-  ];
+  constructor(private recipeService: RecipeService) {}
+
+  ngOnInit(): void {
+    this.recipes = this.recipeService.recipes;
+  }
 
   onRecipeSelected(recipe: Recipe): void {
-    this.recipeSelected.emit(recipe);
+    this.recipeService.onRecipeSelected(recipe);
   }
 }

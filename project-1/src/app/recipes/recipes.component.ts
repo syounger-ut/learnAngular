@@ -1,14 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+// Models
 import { Recipe } from './recipe.model';
+
+// Services
+import { RecipeService } from '../recipe.service';
 
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
 })
-export class RecipesComponent {
+export class RecipesComponent implements OnInit {
   public recipeSelected: Recipe;
 
-  onRecipeSelected(recipe: Recipe): void {
-    this.recipeSelected = recipe;
+  constructor(private recipeService: RecipeService) {}
+
+  ngOnInit(): void {
+    this.recipeSelected = this.recipeService.recipeSelected;
   }
 }
