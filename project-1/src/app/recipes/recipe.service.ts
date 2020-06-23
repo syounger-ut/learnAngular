@@ -1,11 +1,13 @@
-import { Injectable } from '@angular/core';
-import { Recipe } from './recipes/recipe.model';
+import { Injectable, EventEmitter } from '@angular/core';
+
+// Models
+import { Recipe } from './recipe.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
-  public recipes: Recipe[] = [
+  private recipes: Recipe[] = [
     new Recipe(
       "A test recipe",
       "This is simply a test",
@@ -17,11 +19,9 @@ export class RecipeService {
       "https://www.bbcgoodfood.com/sites/default/files/recipe-collections/collection-image/2013/05/chorizo-mozarella-gnocchi-bake-cropped.jpg"
     )
   ];
-  public recipeSelected: Recipe;
+  public recipeSelected: EventEmitter<Recipe> = new EventEmitter<Recipe>();
 
-  constructor() {}
-
-  public onRecipeSelected(recipe: Recipe): void {
-    this.recipeSelected = recipe;
+  public getRecipes(): Recipe[] {
+    return this.recipes.slice();
   }
 }

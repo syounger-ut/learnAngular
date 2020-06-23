@@ -4,8 +4,8 @@
   </div>
   <div class="col-md-7" *ngIf="recipeSelected; else addARecipeMessage">
     <app-recipe-detail
-      [recipeSelected]="recipeSelected"
-      ></app-recipe-detail>
+      [recipeSelected]="recipeSelected">
+      </app-recipe-detail>
   </div>
   <ng-template #addARecipeMessage>
     <p>Please select a recipe!</p>
