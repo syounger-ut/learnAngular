@@ -2,12 +2,7 @@
   <div class="col-md-5">
     <app-recipe-list></app-recipe-list>
   </div>
-  <div class="col-md-7" *ngIf="recipeSelected; else addARecipeMessage">
-    <app-recipe-detail
-      [recipeSelected]="recipeSelected">
-      </app-recipe-detail>
+  <div class="col-md-7">
+    <router-outlet></router-outlet>
   </div>
-  <ng-template #addARecipeMessage>
-    <p>Please select a recipe!</p>
-  </ng-template>
 </div>
